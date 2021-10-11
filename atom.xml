@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>AdelaideB9 Blog</title>
+	<subtitle>The blog where our team posts writeups and other interesting things...</subtitle>
+	<link href="https://blog.adelaideb9.com/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://blog.adelaideb9.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2021-10-11T00:00:00+00:00</updated>
+	<id>https://blog.adelaideb9.com/atom.xml</id>
+	<entry xml:lang="en">
+		<title>First Post</title>
+		<published>2021-10-11T00:00:00+00:00</published>
+		<updated>2021-10-11T00:00:00+00:00</updated>
+		<link href="https://blog.adelaideb9.com/first-post/" type="text/html"/>
+		<id>https://blog.adelaideb9.com/first-post/</id>
+		<content type="html">&lt;p&gt;This is my first post.&lt;&#x2F;p&gt;
+&lt;p&gt;
+Inline math: \(\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…\) 
+&lt;&#x2F;p&gt;
+&lt;p&gt;Block math:
+$$
+\varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } } 
+$$&lt;&#x2F;p&gt;
+&lt;p&gt;Some code:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#eff1f5;&quot;&gt;
+&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;pub fn &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;render&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;(&amp;amp;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;mut &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;) -&amp;gt; Result&amp;lt;(), wgpu::SurfaceError&amp;gt; {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt; output = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;.surface.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;get_current_frame&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;()?.output;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt; view = output
+        .texture
+        .&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;create_view&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;(&amp;amp;wgpu::TextureViewDescriptor::default());
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let mut&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt; encoder = &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;.device
+        .&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;create_command_encoder&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;(&amp;amp;wgpu::CommandEncoderDescriptor {
+            label: Some(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Render Encoder&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;&amp;quot;),
+        });
+    {
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;let mut&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt; render_pass = encoder.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;begin_render_pass&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;(&amp;amp;wgpu::RenderPassDescriptor {
+            label: Some(&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Render Pass&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;&amp;quot;),
+            color_attachments: &amp;amp;[wgpu::RenderPassColorAttachment {
+                view: &amp;amp;view,
+                resolve_target: None,
+                ops: wgpu::Operations {
+                    load: wgpu::LoadOp::Clear(wgpu::Color {
+                        r: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;,
+                        g: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;,
+                        b: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0.3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;,
+                        a: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1.0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;,
+                    }),
+                    store: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;,
+                },
+            }],
+            depth_stencil_attachment: None,
+        });
+
+        render_pass.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;set_pipeline&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;(&amp;amp;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;.render_pipeline);
+        render_pass.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;set_vertex_buffer&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;.vertex_buffer.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;slice&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;(..));
+        render_pass.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;draw&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;..&lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;.num_vertices, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;..&lt;&#x2F;span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;);
+    }
+
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;.queue.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;submit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;(std::iter::once(encoder.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;finish&lt;&#x2F;span&gt;&lt;span style=&quot;color:#4f5b66;&quot;&gt;()));
+    Ok(())
+}
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;</content>
+	</entry>
+</feed>

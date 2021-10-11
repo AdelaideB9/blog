@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blog.adelaideb9.com/sitemap.xml
