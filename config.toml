@@ -1,9 +1,6 @@
 # The URL the site will be built for
 base_url = "https://blog.adelaideb9.com"
 
-# Use the Tale-Zola theme
-theme = "tale-zola"
-
 # The basic information about the site
 title = "AdelaideB9 Blog"
 description = "The blog where our team posts writeups and other interesting things..."
