@@ -1,0 +1,67 @@
+# The URL the site will be built for
+base_url = "https://blog.adelaideb9.com"
+
+# Use the Tale-Zola theme
+theme = "tale-zola"
+
+# The basic information about the site
+title = "AdelaideB9 Blog"
+description = "The blog where our team posts writeups and other interesting things..."
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to generate a feed file for the site
+generate_feed = true
+
+# The filename to use for the feed. Used as the template filename, too.
+# Defaults to "atom.xml", which has a built-in template that renders an Atom 1.0 feed.
+# There is also a built-in template "rss.xml" that renders an RSS 2.0 feed.
+# feed_filename = "atom.xml"
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+# The taxonomies to be rendered for the site and their configuration.
+taxonomies = [
+  {name = "tags", feed = true}, # each tag will have its own feed
+]
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "base16-ocean-light"
+
+[extra]
+# Basic infomation
+author = "AdelaideB9"
+github = "https://github.com/adelaideb9"
+email  = "hello@adelaideb9.com"
+
+# Set date format in the site
+timeformat = "%d %B, %Y"
+
+# Whether to support KaTeX globally
+katex = true
+
+# Google Analytics
+# If using this, add a value like "UA—XXXXXXXX-X"
+google_analytics = ""
+
+# Menu items
+[[extra.menu]]
+name = "Tags"
+url = "tags"
+
+[extra.footer]
+start_year = "2021"  # start year of the site
+end_year = "2021"    # end year of the site
+info = "Made with <a href=\"https://www.getzola.org\">Zola</a> with a customised version of the <a href=\"https://github.com/aaranxu/tale-zola\">Tala-Zola</a> theme."
+
+# The contents of the 404 page
+p404 = "404: Page not found"
+p404_info = "Oops! We can't seem to find the page you are looking for."
+p404_back_home_start = "Let's"
+p404_back_home_with_link = "head back home"
+p404_back_home_end = "."
