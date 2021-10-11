@@ -45,17 +45,16 @@
       <a href="{{ config.base_url | safe }}">
         <h2 class="nav-title">{{ config.title | default(value="Tale-Zola")}}</h2>
       </a>
-      <ul>
-        {% if config.extra.menu %}
-          {% for menu in config.extra.menu %}
-            <li><a href="{{ get_url(path=menu.url) | safe }}">{{ menu.name }}</a></li>
-          {% endfor %}
-        {% else %}
-          <li><a href="{{ config.base_url | safe }}">Posts</a></li>
-          <li><a href="{{ get_url(path="tags") | safe }}">Tags</a></li>
-          <li><a href="{{ get_url(path="about") | safe }}">About</a></li>
-        {% endif %}
-      </ul>
+	  <span style="flex: 1;"></span>
+      {% if config.extra.menu %}
+        {% for menu in config.extra.menu %}
+          <a href="{{ get_url(path=menu.url) | safe }}">{{ menu.name }}</a>
+        {% endfor %}
+      {% else %}
+        <a href="{{ config.base_url | safe }}">Posts</a>
+        <a href="{{ get_url(path="tags") | safe }}">Tags</a>
+        <a href="{{ get_url(path="about") | safe }}">About</a>
+      {% endif %}
     </div>
   </nav>
   {% endblock header %}
