@@ -1,0 +1,129 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>notes - UMassCTF '21 | AdelaideB9 Blog</title>
+<meta name=keywords content>
+<meta name=description content="The breach seems to have originated from this host. Can you find the user's mistake? Here is a memory image of their workstation from that day.">
+<meta name=author content="javad">
+<link rel=canonical href=https://blog.adelaideb9.com/posts/2021/umass/notes/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://blog.adelaideb9.com/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://blog.adelaideb9.com/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://blog.adelaideb9.com/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://blog.adelaideb9.com/apple-touch-icon.png>
+<link rel=mask-icon href=https://blog.adelaideb9.com/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.89.4">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'\\[',right:'\\]',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1}]})"></script>
+<meta property="og:title" content="notes - UMassCTF '21">
+<meta property="og:description" content="The breach seems to have originated from this host. Can you find the user's mistake? Here is a memory image of their workstation from that day.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.adelaideb9.com/posts/2021/umass/notes/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-03-29T10:25:04+00:00">
+<meta property="article:modified_time" content="2021-03-29T10:25:04+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="notes - UMassCTF '21">
+<meta name=twitter:description content="The breach seems to have originated from this host. Can you find the user's mistake? Here is a memory image of their workstation from that day.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://blog.adelaideb9.com/posts/"},{"@type":"ListItem","position":2,"name":"notes - UMassCTF '21","item":"https://blog.adelaideb9.com/posts/2021/umass/notes/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"notes - UMassCTF '21","name":"notes - UMassCTF \u002721","description":"The breach seems to have originated from this host. Can you find the user's mistake? Here is a memory image of their workstation from that day.","keywords":[],"articleBody":"notes I may not be familiar with .mem files but memory forensics, and more specifically volatility seems like its going to be our friend here.\nStarting with volatility -f image.mem imageinfo we get Win7SP1x64 as our top suggested profile, providing confirmation that we’ve got a valid dump.\nUsing one of volatility’s coolest features we can use mkdir shots \u0026\u0026 volatility -f image.mem --profile=Win7SP1x64 screenshot --dump-dir=shots to get the following wire-frame screenshot from memory. Now we know that the flag was probably open in Notepad, given the hint “There wasn’t any suspicious network activity or anything… it’s almost as if they just had their passwords up right on the screen.”\nTo grab the contents from Notepad we’ll want to first find it’s PID and then get a memory dump of said process to analyse.\nvolatility -f image.mem --profile=Win7SP1x64 pslist\nOffset(V) Name PID PPID Thds Hnds Sess Wow64 Start \\ ------------------ -------------------- ------ ------ ------ -------- ------ ------ ------------------------------ ... 0xfffffa8000dd0060 notepad.exe 2696 2288 4 309 1 0 2021-03-20 17:59:34 UTC+0000\\ ... volatility -f image.mem --profile=Win7SP1x64 memdump --dump-dir=./ -p 2696\nUnfortunately volatility doesn’t seem have a handy plugin to give us whatever text was written into Notepad, so we’ll just have to search the resultant dump for any strings that might be part of the flag.\ncat 2696.dmp | strings | grep UMASS\nNo luck, a few more greps later and its pretty clear that either the flag’s not there or its encoded in format that would make it difficult to find by simply searching through strings.\nFrom here a bit of intuition and luck might lead you to the idea that the user may have copied the flag from Notepad onto their clipboard …\nvolatility -f image.mem --profile=Win7SP1x64 clipboard\nSession WindowStation Format Handle Object Data ---------- ------------- ------------------ ------------------ ------------------ -------------------------------------------------- 1 WinSta0 CF_UNICODETEXT 0x5a00b5 0xfffff900c26aeb60 VU1BU1N7JDNDVVIzXyQ3MFJhZzN9Cg== 1 WinSta0 CF_TEXT 0x64006e00000010 ------------------ 1 WinSta0 0x13c01b7L 0x0 ------------------ 1 WinSta0 CF_TEXT 0x1 ------------------ 1 ------------- ------------------ 0x13c01b7 0xfffff900c06fa270 … and you’d be right, we got some data! Judging by that padding it’s base64 encoded. Decoding it gives us the flag UMASS{$3CUR3_$70Rag3} 🥳\n","wordCount":"350","inLanguage":"en","datePublished":"2021-03-29T10:25:04.919Z","dateModified":"2021-03-29T10:25:04.919Z","author":{"@type":"Person","name":"javad"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.adelaideb9.com/posts/2021/umass/notes/"},"publisher":{"@type":"Organization","name":"AdelaideB9 Blog","logo":{"@type":"ImageObject","url":"https://blog.adelaideb9.com/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://blog.adelaideb9.com/ accesskey=h title="AdelaideB9 Blog (Alt + H)">AdelaideB9 Blog</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://blog.adelaideb9.com/archives/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://blog.adelaideb9.com/categories/ title=Categories>
+<span>Categories</span>
+</a>
+</li>
+<li>
+<a href=https://blog.adelaideb9.com/search/ title="Search (Alt + /)" accesskey=/>
+<span>Search</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://blog.adelaideb9.com/>Home</a>&nbsp;»&nbsp;<a href=https://blog.adelaideb9.com/posts/>Posts</a></div>
+<h1 class=post-title>
+notes - UMassCTF '21
+</h1>
+<div class=post-description>
+The breach seems to have originated from this host. Can you find the user's mistake? Here is a memory image of their workstation from that day.
+</div>
+<div class=post-meta><span title="2021-03-29 10:25:04.919 +0000 UTC">March 29, 2021</span>&nbsp;·&nbsp;javad
+</div>
+</header>
+<div class=post-content><h2 id=notes>notes<a hidden class=anchor aria-hidden=true href=#notes>#</a></h2>
+<p>I may not be familiar with .mem files but memory forensics, and more specifically <a href=https://github.com/volatilityfoundation/volatility title=https://github.com/volatilityfoundation/volatility>volatility</a> seems like its going to be our friend here.</p>
+<p>Starting with <code>volatility -f image.mem imageinfo</code> we get <code>Win7SP1x64</code> as our top suggested profile, providing confirmation that we&rsquo;ve got a valid dump.</p>
+<p>Using one of volatility&rsquo;s coolest features we can use <code>mkdir shots && volatility -f image.mem --profile=Win7SP1x64 screenshot --dump-dir=shots</code> to get the following wire-frame screenshot from memory. Now we know that the flag was probably open in Notepad, given the hint &ldquo;There wasn&rsquo;t any suspicious network activity or anything&mldr; it&rsquo;s almost as if they just had their passwords up right on the screen.&rdquo;</p>
+<p><img loading=lazy src=/assets/uploads/session_1.WinSta0.Default.png alt="volatility wire-frame screenshot" title="volatility wire-frame screenshot">
+</p>
+<p>To grab the contents from Notepad we&rsquo;ll want to first find it&rsquo;s PID and then get a memory dump of said process to analyse.</p>
+<p><code>volatility -f image.mem --profile=Win7SP1x64 pslist</code></p>
+<pre tabindex=0><code>Offset(V)           Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Start                        \
+------------------ -------------------- ------ ------ ------ -------- ------ ------ ------------------------------
+...
+0xfffffa8000dd0060 notepad.exe            2696   2288      4      309      1      0 2021-03-20 17:59:34 UTC+0000\
+...
+</code></pre><p><code>volatility -f image.mem --profile=Win7SP1x64 memdump --dump-dir=./ -p 2696</code></p>
+<p>Unfortunately volatility doesn&rsquo;t seem have a handy plugin to give us whatever text was written into Notepad, so we&rsquo;ll just have to search the resultant dump for any strings that might be part of the flag.</p>
+<p><code>cat 2696.dmp | strings | grep UMASS</code></p>
+<p>No luck, a few more greps later and its pretty clear that either the flag&rsquo;s not there or its encoded in format that would make it difficult to find by simply searching through strings.</p>
+<p>From here a bit of intuition and luck might lead you to the idea that the user may have copied the flag from Notepad onto their clipboard &mldr;</p>
+<p><code>volatility -f image.mem --profile=Win7SP1x64 clipboard</code></p>
+<pre tabindex=0><code>Session    WindowStation Format                         Handle Object             Data                                              
+---------- ------------- ------------------ ------------------ ------------------ --------------------------------------------------
+         1 WinSta0       CF_UNICODETEXT               0x5a00b5 0xfffff900c26aeb60   VU1BU1N7JDNDVVIzXyQ3MFJhZzN9Cg==                  
+         1 WinSta0       CF_TEXT              0x64006e00000010 ------------------                                                   
+         1 WinSta0       0x13c01b7L                        0x0 ------------------                                                   
+         1 WinSta0       CF_TEXT                           0x1 ------------------                                                   
+         1 ------------- ------------------          0x13c01b7 0xfffff900c06fa270 
+</code></pre><p>&mldr; and you&rsquo;d be right, we got some data! Judging by that padding it&rsquo;s base64 encoded. Decoding it gives us the flag <code>UMASS{$3CUR3_$70Rag3}</code> 🥳</p>
+</div>
+<footer class=post-footer>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2021 <a href=https://blog.adelaideb9.com/>AdelaideB9 Blog</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+</body>
+</html>
