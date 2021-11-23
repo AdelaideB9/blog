@@ -1,0 +1,26 @@
+baseURL: http://example.org/
+languageCode: en-us
+title: AdelaideB9 Blog
+theme: "PaperMod"
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  math: true
+  ShowBreadcrumbs: true
+
+menu:
+  main:
+    - name: Archive
+      url: /archives/
+      weight: 10
+    - name: Categories
+      url: /categories/
+      weight: 20
+    - name: Search
+      url: /search/
+      weight: 30
