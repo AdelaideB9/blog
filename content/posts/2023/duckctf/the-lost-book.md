@@ -2,7 +2,7 @@
 layout: post
 title: The Lost Book - DuckCTF 2023
 date: 2023-08-04T00:00:00.000Z
-description: I run a library, but recently one of my books was returned damaged. Can you please find the book title? *The flag for this challenge is the title of this book in the original language.*
+description: I run a library, but recently one of my books was returned damaged. Can you please find the book title? <br><em>The flag for this challenge is the title of this book in the original language.</em>
 author:	lachlan 
 categories:
   - ctf
