@@ -11,7 +11,7 @@ categories:
 ---
 
 This challenge only provides the following image of a book cover;
-![](bookcover.jpg)
+![The bookcover](bookcover.jpg)
 
 As we can see, the ISBN is partially corrupted, and the goal is to recover the ISBN and thus recover the book title. 
 
