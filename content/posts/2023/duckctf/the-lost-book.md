@@ -2,7 +2,7 @@
 layout: post
 title: The Lost Book - DuckCTF 2023
 date: 2023-08-04T00:00:00.000Z
-description: I run a library, but recently one of my books was returned damaged. Can you please find the book title? <br><em>The flag for this challenge is the title of this book in the original language.</em>
+description: I run a library, but recently one of my books was returned damaged. Can you please find the book title? The flag for this challenge is the title of this book in the original language.
 author:	lachlan 
 categories:
   - ctf
@@ -11,7 +11,7 @@ categories:
 ---
 
 This challenge only provides the following image of a book cover;
-![](https://hackmd.io/_uploads/SJr3_Bqin.jpg)
+![](bookcover.jpg)
 
 As we can see, the ISBN is partially corrupted, and the goal is to recover the ISBN and thus recover the book title. 
 

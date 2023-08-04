@@ -2,7 +2,7 @@
 layout: post
 title: A Based Crypto Challenge - DuckCTF 2023
 date: 2023-08-04T00:00:00.000Z
-description: There's not much to say here other than this challenge is **BASED**.
+description: There's not much to say here other than this challenge is BASED.
 author:	lachlan 
 categories:
   - ctf
