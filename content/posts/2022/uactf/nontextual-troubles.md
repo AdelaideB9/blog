@@ -10,7 +10,7 @@ categories:
   - crypto
 ---
 
-It turn out that in Python 3, attempting to write non-ASCII characters to a file without using 'binary mode' (a mode which deals with 'non-textual data', hence the name of the challenge) has some less-than ideal results. Indeed, if you tried providing your own plain-text to `xor.py` you might have noticed that there are somehow more bytes in the cipher-text after XORing that you started with in your plaintext. Ultimately, it appears that the `write.write(ciphertext)` function is prepending either 0xc2 or 0xc3 to certain bytes. Simply adding a condition to exclude these, and providing the cipher-text as the input (since XOR is the inverse of itself) will provide a simple solution to this puzzle.
+It turns out that in Python 3, attempting to write non-ASCII characters to a file without using 'binary mode' (a mode which deals with 'non-textual data', hence the name of the challenge) has some less-than-ideal results. Indeed, if you tried providing your plain text to `xor.py` you might have noticed that there are somehow more bytes in the cypher-text after XORing that you started with in your plaintext. Ultimately, it appears that the `write.write(ciphertext)` function is prepending either 0xc2 or 0xc3 to certain bytes. Simply adding a condition to exclude these, and providing the cipher-text as the input (since XOR is the inverse of itself) will provide a simple solution to this puzzle.
 
 ```py
 from random import seed, randrange
